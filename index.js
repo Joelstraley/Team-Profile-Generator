@@ -5,7 +5,7 @@ const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 
-const teamArray = [];
+const team = [];
 
 function managerPrompt(){ 
     inquirer.prompt([
@@ -36,7 +36,7 @@ function managerPrompt(){
         const email = data.email
         const officeNumber = data.officeNumber
         const teamMember = new Manager(name, id, email, officeNumber)
-        teamArray.push(teamMember)
+        team.push(teamMember)
         addMember();
     });
 }
@@ -70,7 +70,7 @@ function addEngineer(){
         const email = data.email
         const github = data.github
         const teamMember = new Engineer(name, id, email, github)
-        teamArray.push(teamMember)
+        team.push(teamMember)
         addMember();
     });
 }
@@ -104,7 +104,7 @@ function addIntern(){
         const email = data.email
         const school = data.school
         const teamMember = new Intern(name, id, email, school)
-        teamArray.push(teamMember)
+        team.push(teamMember)
         addMember();
     });
 }
@@ -128,7 +128,7 @@ function addMember(){
             addIntern();
         break;
         case "No, I have no new members to add":
-            generateTeam();
+            generateTeam(team);
         break;
     }
 });
@@ -253,9 +253,13 @@ module.exports = team => {
 </body>
 </html>
     `;
-fs.writeFile("./team.html", team, err => err ? console.error : console.log("success")) 
 };
 
 
-managerPrompt();
+
+managerPrompt(){
+    .then(team)
+}
+
+fs.writeFile("./team.html", team, err => err ? console.error : console.log("success")) 
 
