@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require('fs');
-const employee = require("./lib/employee");
+const Employee = require("./lib/employee");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
@@ -115,7 +115,7 @@ function addMember(){
         type: "list",
         message: "What would like to add a team member?",
         name: "newMember",
-        choices: ["Yes, add an Engineer", "Yes, add an Intern", "No, I have no new members to add"],
+        choices: ["Yes, add an Engineer","Yes, add an Intern", "No, I have no new members to add"],
         
     },
 ])
@@ -133,8 +133,6 @@ function addMember(){
     }
 });
 }
-
-
 
 
 
@@ -255,8 +253,8 @@ module.exports = team => {
 </body>
 </html>
     `;
+fs.writeFile("./team.html", team, err => err ? console.error : console.log("success")) 
 };
-/* fs.writeFile(`./index.html`,generateTeam); */
 
 
 managerPrompt();
