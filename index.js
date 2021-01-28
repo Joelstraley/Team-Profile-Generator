@@ -1,11 +1,30 @@
 const inquirer = require("inquirer");
 const fs = require('fs');
-const employee = require("./employee");
-const manager = require("./manager");
-const engineer = require("./engineer");
-const intern = require("./intern")
+const employee = require("./lib/employee");
+const manager = require("./lib/manager");
+const engineer = require("./lib/engineer");
+const intern = require("./lib/intern")
 const teamArray = [];
 
+function managerPrompt(){ 
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What is the Team Manager's name?",
+            name: "name",
+        },
+        {
+            type: "input",
+            message: "What is the Team Manager's id?",
+            name: "id",
+        },
+        {
+            type: "input",
+            message: "What is the Team Manager's email?",
+            name: "email",
+        },
+    ])
+}
 
 // create the team
 const generateTeam = team => {
@@ -125,5 +144,8 @@ module.exports = team => {
 </html>
     `;
 };
-fs.writeFile(`./index.html,team())
+fs.writeFile(`./index.html`,generateTeam);
+
+
+managerPrompt();
 
