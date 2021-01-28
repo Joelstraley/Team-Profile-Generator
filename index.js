@@ -1,9 +1,10 @@
 const inquirer = require("inquirer");
 const fs = require('fs');
 const employee = require("./lib/employee");
-const manager = require("./lib/manager");
-const engineer = require("./lib/engineer");
-const intern = require("./lib/intern")
+const Manager = require("./lib/manager");
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
+
 const teamArray = [];
 
 function managerPrompt(){ 
@@ -23,8 +24,119 @@ function managerPrompt(){
             message: "What is the Team Manager's email?",
             name: "email",
         },
+        {
+            type: "input",
+            message: "What is the Team Manager's office number?",
+            name: "officeNumber",
+        },
     ])
+    .then((data) => {
+        const name = data.name
+        const id = data.id
+        const email = data.email
+        const officeNumber = data.officeNumber
+        const teamMember = new Manager(name, id, email, officeNumber)
+        teamArray.push(teamMember)
+        addMember();
+    });
 }
+
+function addEngineer(){
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What is your Engineer's name?",
+            name: "name",
+        },
+        {
+            type: "input",
+            message: "What is your Engineer's id?",
+            name: "id",
+        },
+        {
+            type: "input",
+            message: "What is the your Engineer's email?",
+            name: "email",
+        },
+        {
+            type: "input",
+            message: "What is your Engineer's GitHub username?",
+            name: "github",
+        },
+    ])
+    .then((data) => {
+        const name = data.name
+        const id = data.id
+        const email = data.email
+        const github = data.github
+        const teamMember = new Engineer(name, id, email, github)
+        teamArray.push(teamMember)
+        addMember();
+    });
+}
+
+function addIntern(){
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What is your Intern's name?",
+            name: "name",
+        },
+        {
+            type: "input",
+            message: "What is your Intern's id?",
+            name: "id",
+        },
+        {
+            type: "input",
+            message: "What is the your Intern's email?",
+            name: "email",
+        },
+        {
+            type: "input",
+            message: "What School does your Intern attend?",
+            name: "school",
+        },
+    ])
+    .then((data) => {
+        const name = data.name
+        const id = data.id
+        const email = data.email
+        const school = data.school
+        const teamMember = new Intern(name, id, email, school)
+        teamArray.push(teamMember)
+        addMember();
+    });
+}
+
+function addMember(){
+    inquirer.prompt([
+    {
+        type: "list",
+        message: "What would like to add a team member?",
+        name: "newMember",
+        choices: ["Yes, add an Engineer", "Yes, add an Intern", "No, I have no new members to add"],
+        
+    },
+])
+.then((data) => {
+    switch (data.newMember){
+        case "Yes, add an Engineer":
+            addEngineer();
+        break;
+        case "Yes, add an Intern":
+            addIntern();
+        break;
+        case "No, I have no new members to add":
+            generateTeam();
+        break;
+    }
+});
+}
+
+
+
+
 
 // create the team
 const generateTeam = team => {
@@ -144,7 +256,7 @@ module.exports = team => {
 </html>
     `;
 };
-fs.writeFile(`./index.html`,generateTeam);
+/* fs.writeFile(`./index.html`,generateTeam); */
 
 
 managerPrompt();
