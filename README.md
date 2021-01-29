@@ -15,8 +15,9 @@ Run NPM init in command line to install Inquirer NPM
 ## <a name="usage">Usage</a> 
 Using Node.js you will use the Command line to enter answers to the prompts about your team.
 
-Walkthrough Video: 
-<iframe src="https://drive.google.com/file/d/1Rrlyg_eDEH8T29cIj3utuJthqxMUeiOJ/preview" width="640" height="480"></iframe>
+Screenshot (click for WALKTHROUGH Video): 
+[![alt text](https://github.com/Joelstraley/Team-Profile-Generator/blob/master/Team-Profile-HTML-Screenshot.png)
+(https://drive.google.com/file/d/1Rrlyg_eDEH8T29cIj3utuJthqxMUeiOJ/preview)
 
 ## <a name="License">License</a>
 This is free and unencumbered software released into the public domain.
