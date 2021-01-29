@@ -128,8 +128,7 @@ function addMember(){
             addIntern();
         break;
         case "No, I have no new members to add":
-            console.log(team)
-            fs.writeFile("./team.html", module.exports(team), err => err ? console.error : console.log("success"));
+            fs.writeFile("./index.html", module.exports(team), err => err ? console.error : console.log("success"));
         break;
 
     }
