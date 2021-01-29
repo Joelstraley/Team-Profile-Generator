@@ -5,9 +5,9 @@ describe("Employee", () => {
     // Positive test
     it("should create an object with a 'Employee' property set to an empty array when called with the 'new' keyword", () => {
       // Arrange
-      const employee = new Employee("Dave", );
+      const employee = new Employee("Dave",5,"email@email.com");
 
       // Assert
-      expect(todoList.todos).toEqual("");
+      expect(employee).toEqual("Dave",5,"email@email.com");
     });
   });

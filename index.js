@@ -128,8 +128,10 @@ function addMember(){
             addIntern();
         break;
         case "No, I have no new members to add":
-            generateTeam(team);
+            console.log(team)
+            fs.writeFile("./team.html", module.exports(team), err => err ? console.error : console.log("success"));
         break;
+
     }
 });
 }
@@ -187,13 +189,14 @@ const generateTeam = team => {
     </div>
     <div class="card-body">
         <ul class="list-group">
-            <li class="list-group-item">ID: {{ id }}</li>
+            <li class="list-group-item">ID: {${intern.getId()}}</li>
             <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
             <li class="list-group-item">School: ${intern.getSchool()}</li>
         </ul>
     </div>
 </div>
         `;
+
     };
 
     const html = [];
@@ -253,13 +256,8 @@ module.exports = team => {
 </body>
 </html>
     `;
-};
-
-
-
-managerPrompt(){
-    .then(team)
 }
 
-fs.writeFile("./team.html", team, err => err ? console.error : console.log("success")) 
 
+
+managerPrompt();
